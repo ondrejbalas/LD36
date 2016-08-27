@@ -2,13 +2,11 @@
 
     export class MainMenu extends Phaser.State {
         
-        background: Phaser.Sprite;
         music: Phaser.Sound;
         pool: SnowflakePool;
 
         create() {
-            this.music = this.game.add.audio('music_menu');
-            this.music.play();
+            this.music = this.add.audio('music_menu', 1, true);
 
             this.stage.setBackgroundColor(0x181828);
 
@@ -30,7 +28,7 @@
 
             //this.game.debug.text("Click the logo to start the game", 0, this.world.height, "red");
 
-            //this.input.onDown.addOnce(this.fadeOut, this);
+            this.input.onDown.addOnce(this.fadeOut, this);
         }
 
         update() {
@@ -39,10 +37,11 @@
 
         fadeOut() {
             this.add.audio('click', 1, false).play();
+            this.music.stop();
             
-            this.add.tween(this.background).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-            //var tween = this.add.tween(this.logo).to({ y: 800 }, 2000, Phaser.Easing.Linear.None, true);
-            //tween.onComplete.add(this.startGame, this);
+            this.add.tween(this.stage.backgroundColor).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+            var tween = this.add.tween(this.pool).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+            tween.onComplete.add(this.startGame, this);
         }
 
         startGame() {
