@@ -28,6 +28,7 @@
     <Content Include="build\assets\sfx\Monster_Dead.wav" />
     <Content Include="build\assets\sfx\Player_Died.wav" />
     <Content Include="build\assets\sfx\Swing_Miss.wav" />
+    <Content Include="build\libs\underscore-min.js" />
     <Content Include="build\styles\default.css" />
     <Content Include="build\game.js" />
     <Content Include="build\index.html" />
@@ -40,7 +41,6 @@
   <ItemGroup>
     <Folder Include="build\assets\sprites\" />
     <Folder Include="build\assets\ui\" />
-    <Folder Include="src\utils\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\factories\rectangleImageFactory.ts" />
@@ -54,9 +54,11 @@
     <TypeScriptCompile Include="src\gameStates\level01.ts" />
     <TypeScriptCompile Include="src\gameStates\mainMenu.ts" />
     <TypeScriptCompile Include="src\gameStates\preloader.ts" />
+    <TypeScriptCompile Include="src\utils\util.ts" />
     <TypeScriptCompile Include="tsDefinitions\p2.d.ts" />
     <TypeScriptCompile Include="tsDefinitions\phaser.comments.d.ts" />
     <TypeScriptCompile Include="tsDefinitions\pixi.comments.d.ts" />
+    <TypeScriptCompile Include="tsDefinitions\underscore.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\assets\music\main_bg.ogg" />
