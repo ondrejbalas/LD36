@@ -13,25 +13,27 @@ var LD36;
                 _super.apply(this, arguments);
             }
             MainMenu.prototype.create = function () {
-                this.music = this.game.add.audio('music_menu');
-                this.music.play(null, null, null, true);
-                this.background = this.add.sprite(0, 0, 'titlepage');
-                this.background.alpha = 0;
-                this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
+                this.music = this.add.audio('music_menu', 1, true).play();
+                this.stage.setBackgroundColor(0x181828);
+                this.pool = new SnowflakePool(this.game, 250, 0.29, 0.18, 160, 520);
+                this.logo = this.add.sprite(this.world.centerX, -300, 'sprites', 'Title.png');
                 this.logo.anchor.setTo(0.5);
-                this.add.tween(this.background).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
                 this.add.tween(this.logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 500);
-                this.game.debug.text("Click the logo to start the game", 0, this.world.height, "red");
                 this.input.onDown.addOnce(this.fadeOut, this);
             };
+            MainMenu.prototype.update = function () {
+                this.pool.update();
+            };
             MainMenu.prototype.fadeOut = function () {
-                this.add.audio('click', 1, false).play();
-                this.add.tween(this.background).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-                var tween = this.add.tween(this.logo).to({ y: 800 }, 2000, Phaser.Easing.Linear.None, true);
+                this.add.audio('game_over', 1, false).play();
+                this.music.stop();
+                this.add.tween(this.stage.backgroundColor).to({ r: 0, g: 0, b: 0 }, 500, Phaser.Easing.Linear.None, true);
+                this.add.tween(this.logo).to({ y: -800 }, 800, Phaser.Easing.Linear.None, true);
+                var tween = this.add.tween(this.pool).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
                 tween.onComplete.add(this.startGame, this);
             };
             MainMenu.prototype.startGame = function () {
-                this.game.state.start('Level01', true, false);
+                this.game.state.start('Game', true, false);
             };
             return MainMenu;
         }(Phaser.State));

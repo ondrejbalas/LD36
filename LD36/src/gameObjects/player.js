@@ -10,9 +10,9 @@ var LD36;
         var Player = (function (_super) {
             __extends(Player, _super);
             function Player(game, x, y) {
-                _super.call(this, game, x, y, 'level01-sprites', 1);
+                _super.call(this, game, x, y, 'sprites', 'Player.png');
+                this.speed = 333;
                 this.anchor.setTo(0.5);
-                this.animations.add('fly', [0, 1], 5, true);
                 game.add.existing(this);
                 game.physics.enable(this);
                 this.body.collideWorldBounds = true;
@@ -20,23 +20,25 @@ var LD36;
             }
             Player.prototype.update = function () {
                 this.body.velocity.x = 0;
-                if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-                    this.body.velocity.x = -50;
-                    this.animations.play('fly');
-                    if (this.scale.x === -1) {
-                        this.scale.x = 1;
-                    }
+                this.body.velocity.y = 0;
+                if (this.game.input.keyboard.isDown(Phaser.Keyboard.A)) {
+                    this.body.velocity.x = -this.speed;
                 }
-                else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-                    this.body.velocity.x = 50;
-                    this.animations.play('fly');
-                    if (this.scale.x === 1) {
-                        this.scale.x = -1;
-                    }
+                else if (this.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+                    this.body.velocity.x = this.speed;
                 }
-                else {
-                    this.animations.frame = 0;
+                if (this.game.input.keyboard.isDown(Phaser.Keyboard.W)) {
+                    this.body.velocity.y = -this.speed;
                 }
+                else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
+                    this.body.velocity.y = this.speed;
+                }
+                if (this.body.velocity.x != 0 && this.body.velocity.y != 0) {
+                    this.body.velocity.x *= Math.SQRT1_2;
+                    this.body.velocity.y *= Math.SQRT1_2;
+                }
+                var cursor = new Phaser.Point(this.game.input.activePointer.x, this.game.input.activePointer.y);
+                this.body.rotation = cursor.angle(this.body, true) - 90;
             };
             return Player;
         }(Phaser.Sprite));

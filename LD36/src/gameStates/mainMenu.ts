@@ -7,7 +7,7 @@
         logo: Phaser.Sprite;
 
         create() {
-            this.music = this.add.audio('music_menu', 1, true);
+            this.music = this.add.audio('music_menu', 1, true).play();
 
             this.stage.setBackgroundColor(0x181828);
 
@@ -38,7 +38,7 @@
         }
 
         fadeOut() {
-            this.add.audio('click', 1, false).play();
+            this.add.audio('game_over', 1, false).play();
             this.music.stop();
             
             this.add.tween(this.stage.backgroundColor).to({ r: 0, g: 0, b: 0 }, 500, Phaser.Easing.Linear.None, true);

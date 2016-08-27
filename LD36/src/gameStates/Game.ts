@@ -8,7 +8,8 @@
         create() {
             this.physics.startSystem(Phaser.Physics.ARCADE);
 
-            this.music = this.add.audio('main_bg', 1, true);
+            this.music = this.add.audio('music_main_bg', 1, true).play();
+
             this.stage.setBackgroundColor(0x181828);
 
             this.player = new Player(this.game, this.world.centerX, this.world.centerX);

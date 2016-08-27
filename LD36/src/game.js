@@ -14,7 +14,7 @@ var LD36;
                 this.state.add('Boot', Client.Boot, false);
                 this.state.add('Preloader', Client.Preloader, false);
                 this.state.add('MainMenu', Client.MainMenu, false);
-                this.state.add('Level01', Client.Level01, false);
+                this.state.add('Game', LD36.Client.Game, false);
                 this.state.start('Boot');
             }
             return GameEngine;
