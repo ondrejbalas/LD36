@@ -10,7 +10,4 @@
         game.physics.enable(this);
         this.body.collideWorldBounds = false;
     }
-
-    update(): void {
-    }
 }

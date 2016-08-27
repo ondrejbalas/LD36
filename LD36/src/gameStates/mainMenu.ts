@@ -15,7 +15,7 @@
             //var bgdata = RectangleImageFactory.create(this.game, this.game.width, this.game.height, 24, 24, 32);
             //this.background = this.add.sprite(0, 0, bgdata);
 
-            this.pool = new SnowflakePool(this.game, 250, 0.25, 0.15, 160, 520);
+            this.pool = new SnowflakePool(this.game, 250, 0.29, 0.18, 160, 520);
 
 
 

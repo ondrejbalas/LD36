@@ -1,7 +1,19 @@
 ﻿class SnowflakePool {
     private snowflakes: Array<Snowflake> = [];
 
+    private minAngle: number;
+    private maxAngle: number;
+    private minSnowflakeStartX: number; // the lowest X a snowflake can start at and still be able to reach the screen, given the maximum rightward angle it can have
+    private maxSnowflakeStartX: number; // the highest X a snowflake can start at and still be able to reach the screen, given the maximum leftward angle it can have
+
     constructor(private game: Phaser.Game, private flakes: number, private angle: number, private angleVariation: number, private minSpeed: number, private maxSpeed: number) {
+        this.minAngle = this.angle - this.angleVariation;
+        this.maxAngle = this.angle + this.angleVariation;
+        var minAngleHorizontalMaximum = Math.tan(this.minAngle) * this.game.height;
+        var maxAngleHorizontalMaximum = Math.tan(this.maxAngle) * this.game.height;
+        this.minSnowflakeStartX = Math.min(0, 0 - minAngleHorizontalMaximum);
+        this.maxSnowflakeStartX = Math.max(this.game.width, this.game.width + maxAngleHorizontalMaximum);
+
         for (var i = 0; i < flakes; i++) {
             var newFlake = new Snowflake(game, Util.randInt(3, 7));
             this.resetSnowflake(newFlake, true);
@@ -22,17 +34,14 @@
     }
 
     private resetSnowflake(snowflake: Snowflake, isNew: boolean): void {
-        // We want the snowflake to fall off the screen vertically near the screen edge (so we don't have many off-screen flakes)
-        var endX = Util.randInt(-40, this.game.width + 40);
-
         // Set the snowflake's heading
         snowflake.heading = Util.randRange(this.angle - this.angleVariation, this.angle + this.angleVariation);
         snowflake.speed = Util.randRange(this.minSpeed, this.maxSpeed);
 
-        // Set the snowflake's position so that given its heading it lands at endX
-        var startX = endX - Math.tan(snowflake.heading) * this.game.height;
+        var startX = Util.randInt(this.minSnowflakeStartX, this.maxSnowflakeStartX);
 
         if (isNew) {
+            var endX = startX + (startX * Math.tan(snowflake.heading));
             snowflake.y = Util.randInt(0, this.game.height);
             snowflake.x = startX + (snowflake.y / this.game.height) * (endX - startX);
         } else {
