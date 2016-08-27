@@ -31,7 +31,7 @@
         }
 
         startMainMenu() {
-            this.game.state.start('MainMenu', true, false);
+            this.game.state.start('Game', true, false);
         }
 
     }

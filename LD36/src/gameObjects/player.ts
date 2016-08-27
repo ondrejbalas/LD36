@@ -2,16 +2,21 @@
 
     export class Player extends Phaser.Sprite {
         private speed: number = 333;
+        private downLast: boolean = false;
+        private lastFire: number = 0;
 
+        private miss: Phaser.Sound;
 
         constructor(game: Phaser.Game, x: number, y: number) {
-            super(game, x, y,'sprites', 'Player.png');
+            super(game, x, y, 'sprites', 'Player.png');
             this.anchor.setTo(0.5);
             game.add.existing(this);
             // Physics
             game.physics.enable(this);
             this.body.collideWorldBounds = true;
             this.body.setCircle(20);
+
+            this.miss = this.game.add.audio('swing_miss', 1, false);
         }
 
         update() {
@@ -34,9 +39,21 @@
             }
 
             var cursor = new Phaser.Point(this.game.input.activePointer.x, this.game.input.activePointer.y);
-
             this.body.rotation = cursor.angle(this.body, true) - 90;
-            //Game.input.activePointer
+
+            if (this.game.input.activePointer.isDown) {
+                if (!this.downLast) {
+                    if (this.lastFire + 500 < this.game.time.now) {
+                        this.downLast = true;
+
+                        this.lastFire = this.game.time.now;
+                        this.miss.play();
+                    }
+                }
+            }
+            else {
+                this.downLast = false;
+            }
         }
     }
 }
