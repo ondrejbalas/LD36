@@ -3,29 +3,46 @@
     export class MainMenu extends Phaser.State {
         
         background: Phaser.Sprite;
-        logo: Phaser.Sprite;
+        music: Phaser.Sound;
+        pool: SnowflakePool;
 
         create() {
-            this.background = this.add.sprite(0, 0, 'titlepage');
-            this.background.alpha = 0;
+            this.music = this.game.add.audio('music_menu');
+            this.music.play();
 
-            this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
-            this.logo.anchor.setTo(0.5);
+            this.stage.setBackgroundColor(0x181828);
 
-            this.add.tween(this.background).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
-            this.add.tween(this.logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 500);
+            //var bgdata = RectangleImageFactory.create(this.game, this.game.width, this.game.height, 24, 24, 32);
+            //this.background = this.add.sprite(0, 0, bgdata);
 
-            this.game.debug.text("Click the logo to start the game", 0, this.world.height, "red");
+            this.pool = new SnowflakePool(this.game, 100);
 
-            this.input.onDown.addOnce(this.fadeOut, this);
+            
+
+            //this.background = this.add.sprite(0, 0, 'titlepage');
+            //this.background.alpha = 0;
+
+            //this.logo = this.add.sprite(this.world.centerX, -300, 'logo');
+            //this.logo.anchor.setTo(0.5);
+
+            //this.add.tween(this.background).to({ alpha: 1 }, 500, Phaser.Easing.Linear.None, true);
+            //this.add.tween(this.logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 500);
+
+            //this.game.debug.text("Click the logo to start the game", 0, this.world.height, "red");
+
+            //this.input.onDown.addOnce(this.fadeOut, this);
+        }
+
+        update() {
+            this.pool.update();
         }
 
         fadeOut() {
             this.add.audio('click', 1, false).play();
             
             this.add.tween(this.background).to({ alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
-            var tween = this.add.tween(this.logo).to({ y: 800 }, 2000, Phaser.Easing.Linear.None, true);
-            tween.onComplete.add(this.startGame, this);
+            //var tween = this.add.tween(this.logo).to({ y: 800 }, 2000, Phaser.Easing.Linear.None, true);
+            //tween.onComplete.add(this.startGame, this);
         }
 
         startGame() {

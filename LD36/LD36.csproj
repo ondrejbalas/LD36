@@ -22,6 +22,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="build\assets\sfx\Blip.wav" />
+    <Content Include="build\assets\sfx\Game_Over.wav" />
+    <Content Include="build\assets\sfx\Hit_Hurt.wav" />
+    <Content Include="build\assets\sfx\Monster_Dead.wav" />
+    <Content Include="build\assets\sfx\Player_Died.wav" />
+    <Content Include="build\assets\sfx\Swing_Miss.wav" />
     <Content Include="build\styles\default.css" />
     <Content Include="build\game.js" />
     <Content Include="build\index.html" />
@@ -32,13 +38,17 @@
     <Content Include="build\game.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="build\assets\sounds\" />
     <Folder Include="build\assets\sprites\" />
     <Folder Include="build\assets\ui\" />
     <Folder Include="src\utils\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\factories\rectangleImageFactory.ts" />
+    <TypeScriptCompile Include="src\factories\snowflakeFactory.ts" />
+    <TypeScriptCompile Include="src\gameObjects\mainMenu\snowflakePool.ts" />
+    <TypeScriptCompile Include="src\factories\imageFactory.ts" />
     <TypeScriptCompile Include="src\game.ts" />
+    <TypeScriptCompile Include="src\gameObjects\mainMenu\snowflake.ts" />
     <TypeScriptCompile Include="src\gameObjects\player.ts" />
     <TypeScriptCompile Include="src\gameStates\boot.ts" />
     <TypeScriptCompile Include="src\gameStates\level01.ts" />
@@ -49,6 +59,10 @@
     <TypeScriptCompile Include="tsDefinitions\pixi.comments.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="build\assets\music\main_bg.ogg" />
+    <Content Include="build\assets\music\menu.ogg" />
+    <None Include="Azure.pubxml" />
+    <None Include="obalas-ld36 - Web Deploy.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -96,6 +110,8 @@
     <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
