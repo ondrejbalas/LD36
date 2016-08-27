@@ -5,6 +5,7 @@
     private maxAngle: number;
     private minSnowflakeStartX: number; // the lowest X a snowflake can start at and still be able to reach the screen, given the maximum rightward angle it can have
     private maxSnowflakeStartX: number; // the highest X a snowflake can start at and still be able to reach the screen, given the maximum leftward angle it can have
+    public alpha: number = 1;
 
     constructor(private game: Phaser.Game, private flakes: number, private angle: number, private angleVariation: number, private minSpeed: number, private maxSpeed: number) {
         this.minAngle = this.angle - this.angleVariation;
@@ -24,6 +25,10 @@
     private snowflakeUpdateFrameSkip : number = 0;
     public update(): void {
         this.snowflakeUpdateFrameSkip++;
+
+        if (this.alpha < 1) {
+            _.each(this.snowflakes, s => s.alpha = this.alpha);
+        }
 
         for (var i = this.snowflakeUpdateFrameSkip % 20; i < this.snowflakes.length; i+=20) {
             var s = this.snowflakes[i];

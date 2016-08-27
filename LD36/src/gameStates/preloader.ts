@@ -21,17 +21,18 @@
             this.load.audio('player_died', './assets/sfx/player_died.wav', true);
             this.load.audio('swing_miss', './assets/sfx/swing_miss.wav', true);
 
+            this.load.atlasJSONHash('sprites', './assets/sprites/sprites.png', './assets/sprites/sprites.js');
             //this.load.atlasJSONHash('level01-sprites', './assets/sprites/level01-sprites.png', './assets/sprites/level01-sprites.json');
         }
 
         create() {
-            var tween = this.add.tween(this.loaderText).to({ alpha: 0 }, 2000,
+            var tween = this.add.tween(this.loaderText).to({ alpha: 0 }, 100,
                 Phaser.Easing.Linear.None, true);
             tween.onComplete.add(this.startMainMenu, this);
         }
 
         startMainMenu() {
-            this.game.state.start('MainMenu', true, false);
+            this.game.state.start('Game', true, false);
         }
 
     }

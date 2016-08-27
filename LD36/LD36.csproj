@@ -28,6 +28,8 @@
     <Content Include="build\assets\sfx\Monster_Dead.wav" />
     <Content Include="build\assets\sfx\Player_Died.wav" />
     <Content Include="build\assets\sfx\Swing_Miss.wav" />
+    <Content Include="build\assets\sprites\sprites.js" />
+    <Content Include="build\assets\sprites\sprites.png" />
     <Content Include="build\libs\underscore-min.js" />
     <Content Include="build\styles\default.css" />
     <Content Include="build\game.js" />
@@ -39,7 +41,6 @@
     <Content Include="build\game.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="build\assets\sprites\" />
     <Folder Include="build\assets\ui\" />
   </ItemGroup>
   <ItemGroup>
@@ -51,7 +52,7 @@
     <TypeScriptCompile Include="src\gameObjects\mainMenu\snowflake.ts" />
     <TypeScriptCompile Include="src\gameObjects\player.ts" />
     <TypeScriptCompile Include="src\gameStates\boot.ts" />
-    <TypeScriptCompile Include="src\gameStates\level01.ts" />
+    <TypeScriptCompile Include="src\gameStates\game.ts" />
     <TypeScriptCompile Include="src\gameStates\mainMenu.ts" />
     <TypeScriptCompile Include="src\gameStates\preloader.ts" />
     <TypeScriptCompile Include="src\utils\util.ts" />
