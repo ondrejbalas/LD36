@@ -27,6 +27,11 @@
             } else if (this.game.input.keyboard.isDown(Phaser.Keyboard.S)) {
                 this.body.velocity.y = this.speed;
             }
+
+            if (this.body.velocity.x != 0 && this.body.velocity.y != 0) {
+                this.body.velocity.x *= Math.SQRT1_2;
+                this.body.velocity.y *= Math.SQRT1_2;
+            }
         }
 
     }
