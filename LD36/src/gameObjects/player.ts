@@ -32,8 +32,11 @@
                 this.body.velocity.x *= Math.SQRT1_2;
                 this.body.velocity.y *= Math.SQRT1_2;
             }
+
+            var cursor = new Phaser.Point(this.game.input.activePointer.x, this.game.input.activePointer.y);
+
+            this.body.rotation = cursor.angle(this.body, true) - 90;
+            //Game.input.activePointer
         }
-
     }
-
 }
