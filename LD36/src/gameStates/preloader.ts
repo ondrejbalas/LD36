@@ -25,13 +25,13 @@
         }
 
         create() {
-            var tween = this.add.tween(this.loaderText).to({ alpha: 0 }, 2000,
+            var tween = this.add.tween(this.loaderText).to({ alpha: 0 }, 500,
                 Phaser.Easing.Linear.None, true);
             tween.onComplete.add(this.startMainMenu, this);
         }
 
         startMainMenu() {
-            this.game.state.start('Game', true, false);
+            this.game.state.start(GameEngine.engine.firstState, true, false);
         }
 
     }

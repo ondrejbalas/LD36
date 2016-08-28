@@ -2,12 +2,11 @@
 
     export class MainMenu extends Phaser.State {
         
-        music: Phaser.Sound;
         pool: SnowflakePool;
         logo: Phaser.Sprite;
 
         create() {
-            this.music = this.add.audio('music_menu', 1, true).play();
+            GameEngine.playMusic('music_menu');
 
             this.stage.setBackgroundColor(0x181828);
 
@@ -39,7 +38,7 @@
 
         fadeOut() {
             this.add.audio('game_over', 1, false).play();
-            this.music.stop();
+            GameEngine.stopMusic();
             
             this.add.tween(this.stage.backgroundColor).to({ r: 0, g: 0, b: 0 }, 500, Phaser.Easing.Linear.None, true);
             this.add.tween(this.logo).to({ y: -800 }, 800, Phaser.Easing.Linear.None, true);

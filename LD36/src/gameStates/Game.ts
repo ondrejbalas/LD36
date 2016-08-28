@@ -2,13 +2,12 @@
 
     export class Game extends Phaser.State {
 
-        music: Phaser.Sound;
         player: Player;
 
         create() {
             this.physics.startSystem(Phaser.Physics.ARCADE);
 
-            this.music = this.add.audio('music_main_bg', 1, true).play();
+            GameEngine.playMusic('music_main_bg');
 
             this.stage.setBackgroundColor(0x181828);
 

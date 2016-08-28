@@ -44,8 +44,9 @@
             if (this.game.input.activePointer.isDown) {
                 if (!this.downLast) {
                     if (this.lastFire + 500 < this.game.time.now) {
-                        this.downLast = true;
-
+                        //this.downLast = true;
+                        this.frameName = 'Player_hit.png';
+                        this.game.time.events.add(300, () => this.frameName = 'Player.png');
                         this.lastFire = this.game.time.now;
                         this.miss.play();
                     }

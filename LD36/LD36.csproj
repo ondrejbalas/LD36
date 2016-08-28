@@ -50,7 +50,12 @@
     <TypeScriptCompile Include="src\factories\imageFactory.ts" />
     <TypeScriptCompile Include="src\game.ts" />
     <TypeScriptCompile Include="src\gameObjects\mainMenu\snowflake.ts" />
-    <TypeScriptCompile Include="src\gameObjects\player.ts" />
+    <TypeScriptCompile Include="src\gameObjects\npc\pig.ts" />
+    <TypeScriptCompile Include="src\gameObjects\play\world.ts" />
+    <TypeScriptCompile Include="src\gameObjects\npc\npc.ts" />
+    <TypeScriptCompile Include="src\gameObjects\play\player.ts" />
+    <TypeScriptCompile Include="src\gameObjects\play\tree.ts" />
+    <TypeScriptCompile Include="src\gameObjects\play\worldObject.ts" />
     <TypeScriptCompile Include="src\gameStates\boot.ts" />
     <TypeScriptCompile Include="src\gameStates\game.ts" />
     <TypeScriptCompile Include="src\gameStates\mainMenu.ts" />
